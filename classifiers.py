@@ -267,7 +267,11 @@ class DecisionTreeClassifier(Classifier):
     return self.traverse(sample,0)
       
   def traverse(self, message, depth):
-    if(self.tree[depth] in message):
+    if(self.tree[depth] == "ham"):
+      return "ham"
+    elif(self.tree[depth] == "spam"):
+      return "spam"
+    elif(self.tree[depth] in message):
       return self.traverse(message,2*depth+2)
     else:
       return self.traverse(message,2*depth+1)
